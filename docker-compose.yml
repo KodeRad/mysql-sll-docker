@@ -1,20 +1,24 @@
 version: '3.9'
 
 services:
-  mysql:
-    image: mysql:8.0
+  readyapi_mysql:
+    image: mysql:latest
+    container_name: readyapi_mysql
     volumes:
-      - ./data:/var/lib/mysql
+      - mysql_data:/var/lib/mysql
+      - /Users/konrad.krasocki/Library/Application Support/MySQL/Workbench/certificates/62227408-322F-48AB-92C2-862A4F5F7D17:/etc/mysql/certs
     environment:
       - MYSQL_ROOT_PASSWORD=password
-        - MYSQL_DATABASE=rapidb
-        - MYSQL_USER=user1
-        - MYSQL_PASSWORD=password
     command:
-      - --ssl-ca=/Users/konrad.krasocki/Library/Application Support/MySQL/Workbench/certificates/62227408-322F-48AB-92C2-862A4F5F7D17/ca-cert.pem
-      - --ssl-cert=/Users/konrad.krasocki/Library/Application Support/MySQL/Workbench/certificates/62227408-322F-48AB-92C2-862A4F5F7D17/server-cert.pem
-      - --ssl-key=/Users/konrad.krasocki/Library/Application Support/MySQL/Workbench/certificates/62227408-322F-48AB-92C2-862A4F5F7D17/server-key.pem
+      - --ssl-ca=/etc/mysql/certs/ca-cert.pem
+      - --ssl-cert=/etc/mysql/certs/server-cert.pem
+      - --ssl-key=/etc/mysql/certs/server-key.pem
       - --ssl=1
       - --bind-address=0.0.0.0
     ports:
       - 3306:3306
+
+volumes:
+  mysql_data:
+
+
