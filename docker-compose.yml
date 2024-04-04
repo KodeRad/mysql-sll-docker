@@ -1,17 +1,17 @@
-version: '3.9'
+      version: '3.9'
 
-services:
-  mysql:
-    image: mysql:8.0
-    volumes:
-      - ./data:/var/lib/mysql
-    environment:
-      - MYSQL_ROOT_PASSWORD=password
-        - MYSQL_DATABASE=rapidb
-        - MYSQL_USER=user1
-        - MYSQL_PASSWORD=password
-    command:
-      - --ssl=0
-      - --bind-address=0.0.0.0
-    ports:
-      - 3306:3306
+      services:
+        readyapi_mysql:
+          image: mysql:latest
+          container_name: readyapi_mysql
+          environment:
+            MYSQL_ROOT_PASSWORD: password
+          volumes:
+            - mysql_data:/var/lib/mysql
+          command:
+            - --bind-address=0.0.0.0
+          ports:
+            - 3306:3306
+
+      volumes:
+        mysql_data:
