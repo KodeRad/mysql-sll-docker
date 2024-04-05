@@ -7,9 +7,13 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: password
     volumes:
-      - mysql_data:/var/lib/mysql
+      - 1-volume:/var/lib/mysql
     ports:
       - 3306:3306
 
 volumes:
-  mysql_data:
+  1-volume:
+
+#    ssl-ca=/var/lib/mysql/ca-cert.pem
+#    ssl-cert=/var/lib/mysql/client-cert.pem
+#    ssl-key=/var/lib/mysql/client-key.pem
