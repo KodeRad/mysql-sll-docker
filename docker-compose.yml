@@ -7,13 +7,19 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: password
     volumes:
-      - 1-volume:/var/lib/mysql
+      - ./mysql:/var/lib/mysql
     ports:
       - 3306:3306
 
-volumes:
-  1-volume:
 
-#    ssl-ca=/var/lib/mysql/ca-cert.pem
-#    ssl-cert=/var/lib/mysql/client-cert.pem
-#    ssl-key=/var/lib/mysql/client-key.pem
+# Copy this to your my.cnf file. Please change <directory> to the corresponding
+# directory where the files were copied.
+#  [client]
+#  ssl-ca=<directory>/ca-cert.pem
+#  ssl-cert=<directory>/client-cert.pem
+#  ssl-key=<directory>/client-key.pem
+#
+#  [mysqld]
+#  ssl-ca=<directory>/ca-cert.pem
+#  ssl-cert=<directory>/server-cert.pem
+#  ssl-key=<directory>/server-key.pem
